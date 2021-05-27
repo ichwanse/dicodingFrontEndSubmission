@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    overflow: auto;
+    min-height: 300px;
+    border: 2px solid #43e8e4;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color:#333;
+    line-height:10px;
+
+}
+
+.btn {
+    display: inline-block;
+    background: #555;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-block {
+    display: block;
+    width: 95%;
+    
+}
+
+.input-book span{
+    float: right;
+    margin-right: 20px;
+    color:#E63946
+}
+
+.book {
+    background: #f4f4f4;
+    padding:0 10px;
+    margin-bottom: 20px;
+}
+
+.inner h3 {
+    justify-content: space-between;
+    padding-top: 5px;
+    display:inline-flex;
+}
+
+.inner button{
+    float: right;
+}
+
+.add-form {
+    margin-bottom: 40px;
+}
+
+.form-control {
+    margin: 20px 0;
+}
+
+.form-control label {
+    display: block;
+}
+
+.form-control input {
+    width: 95%;
+    height: 40px;
+    margin: 5px;
+    padding: 3px 7px;
+    font-size: 17px;
+}
+
+.form-control select {
+    width: 95%;
+    height: 40px;
+    margin: 5px;
+    padding: 3px 7px;
+    font-size: 17px;
+}
+select {
+
+    /* styling */
+    background-color: white;
+    border: thin solid #777;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    line-height: 1.5em;
+    padding: 0.5em 3.5em 0.5em 1em;
+
+    /* reset */
+
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-control-check {
+    display: flex;
+}
+
+.form-control-check label {
+    flex-basis: 85%;
+}
+
+.form-control-check input {
+    flex-basis: 15%;
+    height: 20px;
+}
+
+ .search-book{
+     position:relative;
+     top: 5px;
+     left: 7px;
+ }
+
+.pencarian{
+    border: #43e8e4 1px solid;
+    background-color: #efefef;
+
+}
+ .fa-search {
+    position:relative;
+    left:220px;
+    bottom:35px;
+    color: #555;
+}
+
+.search-book{
+    margin-top: 0px;
+}
+.header input{
+    width: 100%;
+}
+
+input{
+    border-radius: 5px;
+    border:#747c81 1px solid;
+    
+}
+
+.input-book{
+    flex-basis: 50%;
+}
+
+.show-book{
+    flex-basis: 50%;
+    
+}
+
+.section-container{
+    display:flex;
+}
+
+fieldset {
+    border: 3px solid transparent;
+    border-top-color: #43e8e4;
+    box-sizing: border-box;
+    grid-area: 1 / 1;
+    /* first row, first column */
+    width: inherit;
+
+}
+
+legend {
+    font: 12pt/0 'Poppins', sans-serif;
+    margin: auto;
+    /* to center */
+    padding: 0 4px;
+    margin-bottom: 10px;;
+}
+
+.void {
+    color: rgb(128, 30, 0);
+    float: right;
+    margin:10px 0px;
+}
+
+.is-complete {
+    color: green;
+    margin: 10px 20px;
+    float: right;
+}
+
+.check-button {
+    background: url('../assets/check-gray.svg');
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+    margin-right: 5px;
+
+}
+
+.check-button:hover {
+    background: url('../assets/check-green.svg');
+    background-size: contain;
+}
+
+.remove-button {
+    background: url('../assets/trash-outline.svg');
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    margin-left: 16px;
+    cursor: pointer;
+    border: none;
+    margin-right: 5px;
+    
+}
+
+.remove-button:hover {
+    background: url('../assets/trash-fill.svg');
+    background-size: contain;
+    
+}
+
+.undo-button {
+    background: url('../assets/undo-ouline.svg');
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+}
+
+.undo-button:hover {
+    background: url('../assets/undo-outline-colored.svg');
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    cursor: pointer;
+    border: none;
+}
+
+.check-button:focus,
+.remove-button {
+    outline: none;
+}
+
+/* style for modal */
+
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn,
+.deletebtn {
+    float: left;
+    width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+    background-color: #ccc;
+    color: black;
+    margin: 10px 0;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    font-weight: 600;
+
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+    background-color: #E63946;
+    color: #fff;
+    width: 50%;
+    margin: 10px 0;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    font-weight: 600;
+}
+.modal-dialog{
+    width: 40%;
+    margin:auto; 
+    position: relative;
+    top: 200px;   
+
+}
+
+
+.modal-body {
+    padding: 16px;
+    text-align: center;
+    color:#333;
+} 
+.modal-body p{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(36, 36, 36, 0.913);
+    padding-top: 50px;
+    
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #43e8e4;
+    width: 80%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+}
+
+/* The Modal Close Button (x) */
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color:#fff;
+    
+
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: flex;
+
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+
+    .cancelbtn,
+    .deletebtn {
+        width: 100%;
+    }
+}
+
+.bg-header{
+    background:#43e8e4;
+    width: 106%;
+    position: relative;
+    bottom: 110px;
+    right: 28px;
+    z-index: -1;
+    height: 70px;;
+}
