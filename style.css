@@ -16,7 +16,7 @@ body {
     margin: 30px auto;
     overflow: auto;
     min-height: 300px;
-    border: 2px solid #43e8e4;
+    border: 4px solid #43e8e4;
     padding: 30px;
     border-radius: 5px;
 }
@@ -66,9 +66,17 @@ body {
 }
 
 .book {
-    background: #f4f4f4;
+    
     padding:0 10px;
     margin-bottom: 20px;
+}
+.inner{
+    background: #f4f4f4;
+    margin:10px;
+    padding:10px;
+    box-shadow: rgba(6, 24, 44, 0.26) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.25) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
 .inner h3 {
@@ -79,6 +87,7 @@ body {
 
 .inner button{
     float: right;
+    
 }
 
 .add-form {
@@ -178,7 +187,7 @@ input{
 }
 
 .show-book{
-    flex-basis: 50%;
+    flex-basis: 55%;
     
 }
 
@@ -187,12 +196,13 @@ input{
 }
 
 fieldset {
-    border: 3px solid transparent;
-    border-top-color: #43e8e4;
+    border: 4px solid transparent;
+    border-color: #43e8e4;
     box-sizing: border-box;
     grid-area: 1 / 1;
     /* first row, first column */
     width: inherit;
+    padding:5px;
 
 }
 

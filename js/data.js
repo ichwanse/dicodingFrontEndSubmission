@@ -56,12 +56,13 @@ function saveData() {
 }
 
 function refreshDataFromShelf() {
-	const book = document.getElementById(BOOK_SHELF_ID);
+	const hasRead = document.getElementById(HAS_READ_BOOK);
+	const unRead = document.getElementById(UNREAD_BOOK);
 
 	for (item of books) {
 		const newBook = makeShelf(item.title, item.author, item.year, item.isComplete);
 		newBook[BOOK_ITEM_ID] = item.id;
-		book.append(newBook);
+		item.isComplete ? hasRead.append(newBook) : unRead.append(newBook);
 	}
 }
 

@@ -1,5 +1,8 @@
-const BOOK_SHELF_ID = 'book-shelf';
+const UNREAD_BOOK = 'unread';
+const HAS_READ_BOOK = 'has-read';
 const BOOK_ITEM_ID = 'itemId';
+document.getElementById(UNREAD_BOOK).style.display = 'none';
+document.getElementById(HAS_READ_BOOK).style.display = 'none';
 
 function makeShelf(title, author, year, isCompleted) {
 	const titleBook = document.createElement('h3');
@@ -14,22 +17,16 @@ function makeShelf(title, author, year, isCompleted) {
 	const library = document.createElement('div');
 	library.classList.add('inner');
 
-	const fieldSet = document.createElement('fieldset');
-	const legend = document.createElement('legend');
-
-	fieldSet.append(legend, library);
-
 	const container = document.createElement('div');
 	container.classList.add('book');
-	container.append(fieldSet);
+	container.append(library);
 
 	if (isCompleted) {
-		legend.innerHTML = 'Sudah dibaca';
+		document.getElementById(HAS_READ_BOOK).style.display = 'block';
 		library.append(titleBook, createRemoveButton(), createUndoButton(), bookAuthor, yearPublish);
 	} else {
-		legend.innerHTML = 'Belum selesai dibaca';
-		fieldSet.style.borderTopColor = '#999';
-		library.append(titleBook, createCheckButton(), bookAuthor, yearPublish);
+		document.getElementById(UNREAD_BOOK).style.cssText = 'display:block; border-color:#555; margin-top:20px';
+		library.append(titleBook, createRemoveButton(), createCheckButton(), bookAuthor, yearPublish);
 	}
 
 	return container;
@@ -37,13 +34,13 @@ function makeShelf(title, author, year, isCompleted) {
 
 function createCheckButton() {
 	return createButton('check-button', function(event) {
-		addBookToHasBeenRead(event.target.parentElement.parentElement.parentElement);
+		addBookToHasBeenRead(event.target.parentElement.parentElement);
 	});
 }
 
 function createUndoButton() {
 	return createButton('undo-button', function(event) {
-		undoBookFromHasBeenRead(event.target.parentElement.parentElement.parentElement);
+		undoBookFromHasBeenRead(event.target.parentElement.parentElement);
 	});
 }
 
@@ -74,14 +71,15 @@ function createButton(buttonTypeClass, eventListener) {
 }
 
 function addBook() {
-	const bookShelf = document.getElementById(BOOK_SHELF_ID);
+	const unRead = document.getElementById(UNREAD_BOOK);
+	const hasRead = document.getElementById(HAS_READ_BOOK);
 	const title = document.getElementById('title').value;
 	const author = document.getElementById('author').value;
 	const year = document.getElementById('yearpicker').value;
 
 	const check = document.getElementById('check');
 
-	let makeBook = check.checked ? makeShelf(title, author, year, true) : makeShelf(title, author, year, false);
+	let makeBook = makeShelf(title, author, year, check.checked ? true : false);
 
 	const bookToObj = check.checked
 		? dataToObject(title, author, year, true)
@@ -97,12 +95,15 @@ function addBook() {
 		makeBook[BOOK_ITEM_ID] = bookToObj.id;
 		books.push(bookToObj);
 
-		bookShelf.append(makeBook);
+		check.checked ? console.log(hasRead) : console.log(unRead);
+
+		check.checked ? hasRead.append(makeBook) : unRead.append(makeBook);
 		updateBookToStorage();
 	}
 }
 
 function removeBookFromShelf(el) {
+	console.log(el[BOOK_ITEM_ID]);
 	el.parentElement.remove();
 	const bookPosition = findBookIndex(el[BOOK_ITEM_ID]);
 	books.splice(bookPosition, 1);
@@ -110,7 +111,7 @@ function removeBookFromShelf(el) {
 }
 
 function undoBookFromHasBeenRead(el) {
-	const bookShelf = document.getElementById(BOOK_SHELF_ID);
+	const unReadBook = document.getElementById(UNREAD_BOOK);
 	const title = el.querySelector('.inner > h3').innerText;
 	const author = el.querySelector('.inner > p').innerText;
 	const year = el.querySelector('.inner > span').innerText;
@@ -121,13 +122,14 @@ function undoBookFromHasBeenRead(el) {
 	book.isComplete = false;
 	makeBook[BOOK_ITEM_ID] = book.id;
 
-	bookShelf.append(makeBook);
+	unReadBook.append(makeBook);
 	el.remove();
 	updateBookToStorage();
 }
 
 function addBookToHasBeenRead(el) {
-	const bookShelf = document.getElementById(BOOK_SHELF_ID);
+	console.log(el);
+	const hasRead = document.getElementById(HAS_READ_BOOK);
 	const title = el.querySelector('.inner > h3').innerText;
 	const author = el.querySelector('.inner > p').innerText;
 	const year = el.querySelector('.inner > span').innerText;
@@ -139,25 +141,43 @@ function addBookToHasBeenRead(el) {
 	book.isComplete = true;
 	makeBook[BOOK_ITEM_ID] = book.id;
 
-	bookShelf.append(makeBook);
+	hasRead.append(makeBook);
 	updateBookToStorage();
 }
 
 function searchBook() {
 	const findTitle = document.getElementById('cari').value.toUpperCase();
 
-	const elems = document.getElementById('book-shelf');
-	const elem = elems.getElementsByClassName('book');
+	const hasRead = document.getElementById('has-read');
+	const elemOne = hasRead.getElementsByClassName('book');
+	console.log(elemOne);
 
-	for (let i = 0; i < elem.length; i++) {
-		let title = elem[i].getElementsByTagName('h3')[0];
+	for (let i = 0; i < elemOne.length; i++) {
+		let title = elemOne[i].getElementsByTagName('h3')[0];
 
 		if (title) {
 			let textValue = title.textContent || title.innerHTML;
 			if (textValue.toUpperCase().indexOf(findTitle) > -1) {
-				elem[i].style.display = '';
+				elemOne[i].style.display = '';
 			} else {
-				elem[i].style.display = 'none';
+				elemOne[i].style.display = 'none';
+			}
+		}
+	}
+
+	const unRead = document.getElementById('unread');
+	const elemTwo = unRead.getElementsByClassName('book');
+	console.log(elemTwo);
+
+	for (let i = 0; i < elemTwo.length; i++) {
+		let title = elemTwo[i].getElementsByTagName('h3')[0];
+
+		if (title) {
+			let textValue = title.textContent || title.innerHTML;
+			if (textValue.toUpperCase().indexOf(findTitle) > -1) {
+				elemTwo[i].style.display = '';
+			} else {
+				elemTwo[i].style.display = 'none';
 			}
 		}
 	}
